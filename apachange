@@ -3,6 +3,8 @@
 if [ "$1" = "-c" ];then
 echo 'Changing Current Directory';
 php /usr/bin/apachange.php -c
+elif [ "$1" = "-r" ];then
+php /usr/bin/apachange.php -r
 else
 php /usr/bin/apachange.php -a
 fi

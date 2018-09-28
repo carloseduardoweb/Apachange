@@ -16,11 +16,15 @@ The script might ask for Password if the user is not root
 
 #Usage
 
-Pass arguement -c to set Current Directory as Apache Root
+Pass argument -c to set Current Directory as Apache Root
 
     $ apachange -c
-   
-Passing no arguement will result in the script asking for path to set the root
+
+Pass argument -r to Restore default (previous) Apache Root settings
+
+    $ apachange -r
+
+Passing no argument will result in the script asking for path to set the root
 
     $ apachange   //This will ask for path
    

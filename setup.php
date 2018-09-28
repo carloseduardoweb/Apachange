@@ -2,7 +2,9 @@
 echo "Setting up Files\n";
 exec("sudo chmod +x apachange");
 exec("sudo chmod +x apachange.php");
+exec("sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bckp");
 exec("sudo chmod 777 /etc/apache2/sites-available/000-default.conf");
+exec("sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bckp");
 exec("sudo chmod 777 /etc/apache2/apache2.conf");
 exec("sudo cp -n apachange /usr/bin");
 exec("sudo \cp  apachange.php /usr/bin");
