@@ -76,8 +76,7 @@ if (strcmp($op,"No Such Path\n")==0) {
   $file1=str_replace($string,$path,$file);
   file_put_contents($apache,$file1);
   echo "\n";
-  $cmd=shell_exec('sudo service apache2 reload 2>&1');
+  $cmd=shell_exec('sudo service apache2 restart');
   echo "\n";
 }
 ?>
-
