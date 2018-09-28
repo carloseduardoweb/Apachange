@@ -34,7 +34,7 @@ if($argument1=='-c') {
   exec("sudo mv /etc/apache2/sites-available/000-default.conf.bckp /etc/apache2/sites-available/000-default.conf");
   exec("sudo rm -f /etc/apache2/apache2.conf");
   exec("sudo mv /etc/apache2/apache2.conf.bckp /etc/apache2/apache2.conf");
-  shell_exec('sudo service apache2 reload 2>&1');
+  shell_exec('sudo service apache2 restart');
   echo"Restored the default Root for Apache settings \n";
   die();
 } else {
