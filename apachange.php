@@ -10,7 +10,7 @@ for($i=0;$i<$num;++$i) {
   echo" ";
 }
 
-for($i=0;$i<$num/2-5;++$i) {
+for($i=0;$i<$num;++$i) {
   echo" ";
 }
 
@@ -21,15 +21,15 @@ for($i=0;$i<$num;++$i) {
 }
 
 if(isset($argv[1])) {
-  $arguement1=$argv[1];
+  $argument1=$argv[1];
 } else {
-  $arguement1='a';
+  $argument1='a';
 }
 
-if($arguement1=='-c') {
+if($argument1=='-c') {
   $path=system('pwd');
   echo"Setting ".$path." as new Root for Apache \n";
-} elseif($arguement1=='-r') {
+} elseif($argument1=='-r') {
   exec("sudo rm -f /etc/apache2/sites-available/000-default.conf");
   exec("sudo mv /etc/apache2/sites-available/000-default.conf.bckp /etc/apache2/sites-available/000-default.conf");
   exec("sudo rm -f /etc/apache2/apache2.conf");
