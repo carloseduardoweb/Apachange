@@ -20,7 +20,7 @@ Pass argument -c to set Current Directory as Apache Root
 
     $ apachange -c
 
-Pass argument -r to Restore default (previous) Apache Root settings
+Pass argument -r to Restore default Apache Root settings
 
     $ apachange -r
 

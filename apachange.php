@@ -30,25 +30,10 @@ if ($argument1 == '-c') {
   $path = system('pwd');
   echo "Setting " . $path . " as new Root for Apache \n";
 } elseif ($argument1 == '-r') {
-  if (!file_exists('/etc/apache2/sites-available/000-default.conf')) {
-    echo "'/etc/apache2/sites-available/000-default.conf' not found.\n";
-    echo "You need to execute 'php setup.php' at least one time before to use this command.\n";
-    echo"Failed to restore the default Root for Apache settings\n";
-    die();
-  }
-  if (!file_exists('/etc/apache2/apache2.conf')) {
-    echo "'/etc/apache2/apache2.conf' not found.\n";
-    echo "You need to execute 'php setup.php' at least one time before to use this command.\n";
-    echo"Failed to restore the default Root for Apache settings\n";
-    die();
-  }
-  exec("sudo rm -f /etc/apache2/sites-available/000-default.conf");
-  exec("sudo mv /etc/apache2/sites-available/000-default.conf.bckp /etc/apache2/sites-available/000-default.conf");
-  exec("sudo chmod 777 /etc/apache2/sites-available/000-default.conf");
-  exec("sudo rm -f /etc/apache2/apache2.conf");
-  exec("sudo mv /etc/apache2/apache2.conf.bckp /etc/apache2/apache2.conf");
-  exec("sudo chmod 777 /etc/apache2/apache2.conf");
-  shell_exec('sudo service apache2 restart &');
+  $local_path = null;
+  exec('pwd', $local_path);
+  exec('cd /var/www/html; sudo apachange -c');
+  exec('cd ' . $local_path[0]);
   echo"Restored the default Root for Apache settings\n";
   die();
 } else {
@@ -64,19 +49,19 @@ if ($argument1 == '-c') {
 if ($path == '~') {
   echo "Username: \n";
   $user = system('echo $USER');
-  $path = "//home//" . $user;
+  $path = "/home/" . $user;
 }
 
 $str = 'No Such Path';
-$op = shell_exec("if [ ! -d '".$path."' ]; then echo '".$str."'; fi");
+$op = shell_exec("if [ ! -d '" . $path . "' ]; then echo '" . $str . "'; fi");
 echo $op;
 
-if (strcmp($op,"No Such Path\n") == 0) {
+if (strcmp($op, "No Such Path\n") == 0) {
   die();
 } else {
-  $apache = "//etc//apache2//sites-available//000-default.conf";
+  $apache = "/etc/apache2/sites-available/000-default.conf";
   $file = file_get_contents($apache);
-  $pattern = "//DocumentRoot//";
+  $pattern = "/DocumentRoot/";
   //preg_match($pattern,$file,$matches,PREG_OFFSET_CAPTURE);
   $patt = "DocumentRoot";
   $pos = strpos($file,$patt);
@@ -96,6 +81,6 @@ if (strcmp($op,"No Such Path\n") == 0) {
   $file1 = str_replace($string, $path, $file);
   file_put_contents($apache,$file1);
   echo "\n";
-  $cmd = shell_exec('sudo service apache2 restart &');
+  $cmd = shell_exec("sudo service apache2 restart &");
   echo "\n";
 }
