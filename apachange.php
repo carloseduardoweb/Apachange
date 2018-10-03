@@ -38,12 +38,13 @@ if ($argument1 == '-c') {
   die();
 } else {
   $invalid = false;
-  do {
-    $path = readline("Enter the directory to change Root for Apache  \n");
+	$path = readline("Enter the directory to change Root for Apache  \n");
+  while ($invalid = ($path == '.')) {
     if ($invalid) {
       echo "Invalid path! Single dot is not allowed.\n";
     }
-  } while ($invalid = ($path == '.'));
+		$path = readline("Enter the directory to change Root for Apache  \n");
+  }
 }
 
 if ($path == '~') {
